@@ -12,7 +12,7 @@ import css from "./App.module.css"
 const App = () => {
   const [votes, setVotes] = useState<Votes>({ good: 0, neutral: 0, bad: 0 })
 
-  const handleVote = (type: VoteType) => {
+  const handleVote = (type: VoteType): void => {
     setVotes(prev => ({ ...prev, [type]: prev[type] + 1 }));
   };
 
@@ -21,7 +21,7 @@ const App = () => {
  const positiveRate = totalVotes
     ? Math.round((votes.good / totalVotes) * 100) : 0;
   
-  const resetVotes = () => setVotes({
+  const resetVotes = (): void => setVotes({
     good: 0,
     neutral: 0,
     bad: 0,
@@ -39,8 +39,9 @@ const App = () => {
         <VoteStats votes={votes}
           totalVotes={totalVotes}
           positiveRate={positiveRate}
-        />) :
-        (<Notification />
+        />
+      ) : (
+        <Notification />
         )}
     </div>
   );
